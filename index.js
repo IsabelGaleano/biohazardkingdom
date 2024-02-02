@@ -1,19 +1,10 @@
-const express = require('express');
-const path = require('path');
+var path = require('path');
+var express = require('express');
+var app = express();
 
-const app = express();
-const PORT = 3000;
+var folder = path.join(__dirname, 'public'); 
+app.use(express.static(folder)) 
 
-// Configurar el directorio de archivos estáticos
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.get('/staff', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'staff.html'));
-});
 
 app.listen(process.env.PORT || 5000, function () {
     console.log('Example app listening on port 5000!');
